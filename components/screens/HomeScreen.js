@@ -85,7 +85,8 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     screen: {
-        paddingHorizontal: 4
+        paddingHorizontal: 4,
+        paddingTop: 30
     },
     title: {
         fontSize: 36,
