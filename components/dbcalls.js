@@ -425,6 +425,7 @@ export const getPublishedBusinessesByType = async (type) => {
 
 // Check if user has the business saved
 export const checkIfUserHasBusinessInSaved = async (user, businessID) => {
+    if (user == null) return false;
     try {
         const userDocRef = doc(FIREBASE_DB, 'users', user.uid? user.uid : "");
         const userDoc = await getDoc(userDocRef);
@@ -438,6 +439,7 @@ export const checkIfUserHasBusinessInSaved = async (user, businessID) => {
 
 // Add business to saved
 export const addBusinessIDToSavedList = async (user, businessID) => {
+    if (user == null) return null;
     try {
         console.log('adding: ', businessID);
         const userDocRef = doc(FIREBASE_DB, 'users', user.uid);
@@ -452,6 +454,7 @@ export const addBusinessIDToSavedList = async (user, businessID) => {
 
 // Remove business from saved
 export const removeBusinessIDFromSavedList = async (user, businessID) => {
+    if (user == null) return false;
     try {
         console.log('removing: ', businessID);
         const userDocRef = doc(FIREBASE_DB, 'users', user.uid);

@@ -122,6 +122,11 @@ export default function BusinessInfoScreen({ navigation, route }) {
     // changes the current saved and saves the business if needed
     const handleSaveIsPressed = async () => {
         try {
+            // if no user, return alert that user must sign in
+            if (!user) {
+                handleCreateToast('error', 'You must sign in to save!', 'bottom');
+                return;
+            }
             // add businessID to saved in database if saving. Remove is unsaving.
             if (isSaved == false) {
                 await addBusinessIDToSavedList(user, businessID);

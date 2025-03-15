@@ -2,7 +2,7 @@ import { useTheme } from "@react-navigation/native";
 import { useContext, useEffect, useState } from "react";
 import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import { SubmitPageStackScreenContext } from "../../contexts/SubmitPageStackScreenContext";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import CheckBox from "react-native-check-box";
 import DropDownPicker from "react-native-dropdown-picker";
 
 export default function SubmitPage() {
@@ -103,13 +103,13 @@ export default function SubmitPage() {
                 </View>
                 
                 <View style = {{width: '40%'}}> 
-                    <BouncyCheckbox 
+                    <CheckBox 
                         isChecked = {businessData.isOwner}
-                        text = "I am the owner"
-                        unFillColor = 'transparent'
-                        fillColor = '#EF5A6F'
-                        textStyle = {{color: colors.text, textDecorationLine: "none"}}
-                        onPress = {() => {
+                        rightTexttext = "I am the owner"
+                        checkBoxColor = 'transparent'
+                        checkedCheckBoxColor = '#EF5A6F'
+                        rightTextStyle = {{color: colors.text, textDecorationLine: "none"}}
+                        onClick = {() => {
                             setBusinessData((prevData) => ({
                                 ...prevData,
                                 isOwner: !prevData.isOwner

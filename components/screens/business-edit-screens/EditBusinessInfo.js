@@ -11,7 +11,7 @@ import ImageButton from "../../settings-components/ImageButton";
 import Line from "../../other-components/Line";
 import { EditBusinessStackContext } from "../../contexts/EditBusinessStackContext";
 import OpenButtonBusinessEdit from "../../settings-components/OpenButtonBusinessEdit";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import CheckBox from "react-native-check-box";
 import { SettingStackContext } from "../../contexts/SettingStackContext";
 import DropDownPicker from "react-native-dropdown-picker";
 
@@ -378,13 +378,13 @@ export default function EditBusinessInfo({ navigation, route}) {
                     <Text style = {[styles.title, {color: colors.text}]}>Publisher Information</Text>
 
                     <View style = {[styles.publisherBlocks, {width: '56%'}]}>
-                        <BouncyCheckbox 
+                        <CheckBox 
                             isChecked = {businessData.publisher.userName != ""}
-                            text = "Submitter is the owner"
-                            unFillColor = 'transparent'
-                            fillColor = '#EF5A6F'
-                            textStyle = {{color: colors.text, textDecorationLine: 'none'}}
-                            onPress = {() => {
+                            rightText = "Submitter is the owner"
+                            checkBoxColor = 'transparent'
+                            checkedCheckBoxColor = "#EF5A6F" 
+                            rightTextStyle = {{color: colors.text, textDecorationLine: 'none'}}
+                            onClick = {() => {
                                 const newPublisher = businessData.publisher.userName == "" 
                                     ? publisher 
                                     : {userName: "", email: ""}
