@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         margin: 4,
         fontSize: 16,
-        padding: 4
+        padding: 4,
     },
     inputHeader: {
         fontSize: 18,

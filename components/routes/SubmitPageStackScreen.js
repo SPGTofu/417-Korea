@@ -4,7 +4,7 @@ import {SubmitPageStackScreenContext} from "../contexts/SubmitPageStackScreenCon
 import { useContext, useState } from "react";
 import SubmitPage from "../screens/business-submission-screens/SubmitPage";
 import { UserContext } from "../contexts/UserContext"
-import { Button, Keyboard } from "react-native";
+import { Button, Image, Keyboard, Text, TouchableOpacity } from "react-native";
 import SubmitHoursScreen from "../screens/business-submission-screens/SubmitHoursScreen";
 import SubmitPhotosScreen from "../screens/business-submission-screens/SubmitPhotosScreen";
 import { handleCreateToast } from "../settings-components/Toast";
@@ -12,6 +12,8 @@ import { checkIfBusinessDataFieldsAreMissing, checkIfBusinessHoursAreMissing } f
 import { createBusinessRequest } from "../dbcalls";
 import { SettingStackContext } from "../contexts/SettingStackContext";
 import { useTheme } from "@react-navigation/native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import chevronBackIcon from '../../assets/logos/chevron-back-icon-black.png';
 
 const SubmitPageStack = createStackNavigator();
 
@@ -59,7 +61,7 @@ export default function SubmitPageStackScreen({ navigation }) {
                 'bottom');
             return;
         }
-        navigation.navigate("SubmitHours"); 
+        navigation.push("SubmitPageStack", {screen: "SubmitHours"}); 
         return;
     }
 
@@ -74,7 +76,7 @@ export default function SubmitPageStackScreen({ navigation }) {
                 'bottom');
             return;
         }
-        navigation.navigate("SubmitPhotos");
+        navigation.push("SubmitPageStack", {screen: "SubmitPhotos"}); 
         return;
     }
 
@@ -144,8 +146,36 @@ export default function SubmitPageStackScreen({ navigation }) {
                             title = "Next"
                             color = {dark ? "white" : "black"}
                             onPress = {() => handleSubmitHours()}
-
                         />
+                    ),
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            onPress = {() => navigation.pop()}
+                            style = {{
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Image
+                                source = {chevronBackIcon}
+                                style = {{
+                                    width: 10, 
+                                    height: 20,
+                                    margin: 4,
+                                    tintColor: dark ? 'white' : 'black' 
+                                }}
+                            />
+                            <Text
+                                style = {{
+                                    fontSize: 20,
+                                    margin: 4,
+                                    color: dark ? "white" : "black"
+
+                                }}
+                            >
+                                Back
+                            </Text>
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -160,6 +190,36 @@ export default function SubmitPageStackScreen({ navigation }) {
                             color = {dark ? "white" : "black"}
                             onPress = {() => handleSubmitBusiness()}
                         />
+                    ),
+                    headerLeft: () => (
+                        <TouchableOpacity
+                            onPress = {() => navigation.pop()}
+                            style = {{
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Image
+                                source = {chevronBackIcon}
+                                style = {{
+                                    width: 10, 
+                                    height: 20,
+                                    margin: 4,
+                                    tintColor: dark ? 'white' : 'black' 
+                                }}
+                            />
+                            <Text
+                                style = {{
+                                    fontSize: 20,
+                                    margin: 4,
+                                    color: dark ? "white" : "black"
+
+                                }}
+                            >
+                                Back
+                            </Text>
+                        </TouchableOpacity>
+
                     )
                 }}
             />

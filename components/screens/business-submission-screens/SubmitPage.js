@@ -83,7 +83,7 @@ export default function SubmitPage() {
                     numberOfLines = {5}
                     maxLength = {300}
                 />
-                <View>
+                <View style = {{justifyContent: 'center', alignItems: 'center', marginTop: 12}}>
                     <DropDownPicker 
                         open = {dropDownOpen}
                         listMode = 'SCROLLVIEW'
@@ -95,9 +95,9 @@ export default function SubmitPage() {
                             const value = callback();
                             handleChangeBusinessType(value);
                         }}
-                        style = {{ width: '80%', margin: 8, backgroundColor: '#f4f4f4'}}
-                        contentContainerStyle = {{justifyContent: 'center', alignItems: 'center'}}
-                        dropDownContainerStyle = {{backgroundColor: '#f4f4f4', width: '82%'}}
+                        style = {{ width: '70%', margin: 8, backgroundColor: '#f4f4f4'}}
+                        contentContainerStyle = {{justifyContent: 'center', alignItems: 'center', width:'70%'}}
+                        dropDownContainerStyle = {{backgroundColor: '#f4f4f4', width: '75%'}}
                         labelStyle = {{color: 'black'}}
                     />
                 </View>
