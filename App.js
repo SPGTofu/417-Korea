@@ -11,7 +11,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './FirebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAvoidingView, Platform } from 'react-native';
+import { enableScreens } from 'react-native-screens';
 
+enableScreens();
 const Tab = createBottomTabNavigator();
 
 export default function App() { 
