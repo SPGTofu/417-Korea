@@ -2,6 +2,7 @@ import { FIREBASE_DB, FIREBASE_STORAGE } from "../FirebaseConfig";
 import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import { deleteFolderInBusinessEditImages, deletePendingImagesOfBusinessInStorage, deletePublishedImagesOfBusinessInStorage, getPublishedImageFromStorage, movePendingImageToPublishedImage, removePublishedImageIfNotInURLArray, returnArrayOfImageNamesInOrderGiven, returnArrayOfImagesNotInPublishedImageOfBusiness, uploadBusinessEditImage, uploadPendingImageToStorage, uploadPublishedImageToStorage, uploadingPublishedImageToStorage } from "./storagecalls";
 import { getBlob, ref } from "firebase/storage";
+import { deleteUser } from "firebase/auth";
 
 /* create a document with the business' 
 name, description, phone number, and address */
@@ -109,8 +110,16 @@ export const createBusinessRequest = async (businessData, user) => {
 // checks if user is an admin
 export const checkIfUserIsAdmin = async (user) => {
     try {
+        if (user.uid == null) { 
+            console.error("No user found");
+            return false;
+        }
+        const uid = user.uid;
+        console.log(uid);
         const userDocRef = doc(FIREBASE_DB, "users", user.uid);
+        console.log('2');
         const userDoc = await getDoc(userDocRef);
+        console.log(userDoc);
         if (userDoc.exists()) {
             return userDoc.data().roles.includes("admin");
         } else {
@@ -465,4 +474,26 @@ export const removeBusinessIDFromSavedList = async (user, businessID) => {
     } catch (error) {
         console.error('error removing business from saved: ', error);
     }
+}
+
+// delete user in auth and user doc in firebase
+export const deleteUserAndUserDocFromDB = async (user) => {
+    const uid = user?.uid;
+    const userDoc = doc(FIREBASE_DB, "users", uid);
+
+    // check if user, user auth, and user doc exist
+    if (user && uid != null && userDoc != null) {
+        deleteUser(user).then(async () => {
+            console.log(`${uid} has been removed from the database`);
+            //delete user doc
+            try {
+                await deleteDoc(userDoc);
+                console.log(`${uid} doc has been removed`)
+            } catch (error) {
+                console.error (`error deleting userDoc for ${uid}: ${error}`);
+            }
+          }).catch((error) => {
+            console.error(`error removing user ${uid}: ${error}`)
+          }); 
+    }     
 }

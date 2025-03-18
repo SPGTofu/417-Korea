@@ -12,7 +12,6 @@ import { checkIfBusinessDataFieldsAreMissing, checkIfBusinessHoursAreMissing } f
 import { createBusinessRequest } from "../dbcalls";
 import { SettingStackContext } from "../contexts/SettingStackContext";
 import { useTheme } from "@react-navigation/native";
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import chevronBackIcon from '../../assets/logos/chevron-back-icon-black.png';
 
 const SubmitPageStack = createStackNavigator();

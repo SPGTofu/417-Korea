@@ -11,16 +11,17 @@ export default function AccountData({ navigation }) {
 
     useEffect(()=> {
         const fetchAdminStatus = async () => {
-            setIsAdmin(await checkIfUserIsAdmin(user));
+            const adminStatus = await checkIfUserIsAdmin(user);
+            setIsAdmin(adminStatus);
         };
+        if (user) fetchAdminStatus();
         console.log('useEffect in AccountData Active');
-        fetchAdminStatus();
     }, [user])
 
     return (
         <View style = {styles.container}>
             <View style = {[{borderColor: colors.text, borderTopWidth: 1}, styles.button]}>
-                <TouchableOpacity onPress = {() => navigation.navigate('AccountSettings')}>
+                <TouchableOpacity onPress = {() => navigation.navigate('AccountSettingsStackScreen')}>
                     <Text style = {[{color: colors.text}, styles.text]}>Account</Text>
                 </TouchableOpacity>
             </View>

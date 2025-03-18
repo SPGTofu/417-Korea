@@ -34,6 +34,7 @@ firestore-debug.log
 # local env files
 .env*.local
 .env
+https:/
 
 # typescript
 *.tsbuildinfo

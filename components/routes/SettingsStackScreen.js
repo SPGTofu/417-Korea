@@ -3,7 +3,7 @@ import SettingsScreen from "../screens/SettingsScreen";
 import LoginScreen from "../screens/LoginScreen";
 import { useState } from "react";
 import {SignPageContext} from "../contexts/SignPageContext";
-import AccountSettings from "../screens/AccountSettings";
+import AccountSettingsStackScreen from "../routes/AccountSettingsStackScreen";
 import Saved from "../screens/Saved";
 import SubmitPageStackScreen from "./SubmitPageStackScreen";
 import Toast from "react-native-toast-message";
@@ -56,8 +56,8 @@ export default function SettingStackScreen() {
                             options={{title: signPage}}
                         />
                         <SettingsStack.Screen 
-                            name = "AccountSettings" 
-                            component = {AccountSettings} 
+                            name = "AccountSettingsStackScreen" 
+                            component = {AccountSettingsStackScreen} 
                             options={{title: 'Account'}}
                         />
                         <SettingsStack.Screen 
