@@ -15,7 +15,6 @@ export default function LoginScreen({ navigation }) {
             const backPage = () => {
                 setSignPage('Login');
             };
-
             return () => backPage();
         }, [])
     );
