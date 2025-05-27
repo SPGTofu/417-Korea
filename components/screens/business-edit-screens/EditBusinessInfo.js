@@ -60,8 +60,7 @@ export default function EditBusinessInfo({ navigation, route}) {
         // create array of the business's images
         const arrayOfImages = [];
         for (const image of business.photos) {
-            const url = await getPublishedImageFromStorage(businessID, image);
-            arrayOfImages.push(url);
+            arrayOfImages.push(image);
         }
 
         if (business != null) {
@@ -237,11 +236,11 @@ export default function EditBusinessInfo({ navigation, route}) {
         <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
             <ScrollView style = {styles.container}>
                 <View style = {styles.nameWrapper}>
-                    <Text style = {[styles.titleText, {color: colors.text}]}>
+                    <Text style = {[styles.titleText, {fontSize: 20, color: colors.text}]}>
                         Name:
                     </Text>
                     <TextInput 
-                        style = {[styles.nameInput, {color: colors.text}]}
+                        style = {[styles.nameInput, {color: colors.text, fontSize: 20}]}
                         value = {businessData.name}
                         onChangeText = {
                             (text) => setFieldInBusinessData("name", text)
@@ -337,7 +336,7 @@ export default function EditBusinessInfo({ navigation, route}) {
                 </View>
                 <Line />
 
-                <View style = {styles.standardWrapper}>
+                <View style = {[styles.standardWrapper, {alignItems: 'center'}]}>
                     <Text style = {[styles.title, {color: colors.text}]}>Business Type</Text>
                     <DropDownPicker
                             open = {dropDownOpen}
@@ -350,10 +349,10 @@ export default function EditBusinessInfo({ navigation, route}) {
                                 const value = callback();
                                 setFieldInBusinessData('type', value);
                             }}
-                            style = {{ width: '80%', margin: 8, backgroundColor: '#f4f4f4'}}
+                            style = {{ width: '70%', margin: 8, backgroundColor: '#f4f4f4'}}
                             contentContainerStyle = {{justifyContent: 'center', alignItems: 'center'}}
-                            dropDownContainerStyle = {{backgroundColor: '#f4f4f4', width: '82%'}}
-                            labelStyle = {{color: colors.text}}
+                            dropDownContainerStyle = {{backgroundColor: '#f4f4f4', width: '75%'}}
+                            labelStyle = {{color: 'black'}}
                         />
                 </View>
                 <Line />
@@ -377,13 +376,14 @@ export default function EditBusinessInfo({ navigation, route}) {
                 <View style = {styles.standardWrapper}>
                     <Text style = {[styles.title, {color: colors.text}]}>Publisher Information</Text>
 
-                    <View style = {[styles.publisherBlocks, {width: '56%'}]}>
+                    <View style = {[{width: '49%', margin: 8}]}>
                         <CheckBox 
                             isChecked = {businessData.publisher.userName != ""}
                             rightText = "Submitter is the owner"
                             checkBoxColor = 'transparent'
-                            checkedCheckBoxColor = "#EF5A6F" 
-                            rightTextStyle = {{color: colors.text, textDecorationLine: 'none'}}
+                            checkedCheckBoxColor = "#EF5A6F"
+                            uncheckedCheckBoxColor = {colors.text}
+                            rightTextStyle = {{fontSize: 18, color: colors.text, textDecorationLine: "none"}}
                             onClick = {() => {
                                 const newPublisher = businessData.publisher.userName == "" 
                                     ? publisher 

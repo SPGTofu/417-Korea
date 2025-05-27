@@ -8,6 +8,7 @@ import { UserContext } from '../contexts/UserContext';
 import { doSignOut } from '../auth';
 import AccountData from '../settings-components/AccountData';
 import { handleCreateToast } from '../settings-components/Toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SettingsScreen({ navigation }) {
     const {theme, handleSetTheme} = useContext(ThemeContext);
@@ -18,9 +19,10 @@ export default function SettingsScreen({ navigation }) {
         setLanguage(newLang);
     }
 
-    const handleSignOut = () => {
+    const handleSignOut = async () => {
         if (user) {
             doSignOut();
+            await AsyncStorage.removeItem("user");
             setUser(null);
         }
         handleCreateToast('success', 'Signed Out', 'bottom');

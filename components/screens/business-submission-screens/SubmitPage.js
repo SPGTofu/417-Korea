@@ -102,12 +102,13 @@ export default function SubmitPage() {
                     />
                 </View>
                 
-                <View style = {{width: '40%'}}> 
+                <View style = {{width: '30%'}}> 
                     <CheckBox 
                         isChecked = {businessData.isOwner}
-                        rightTexttext = "I am the owner"
+                        rightText = "I am the owner"
                         checkBoxColor = 'transparent'
                         checkedCheckBoxColor = '#EF5A6F'
+                        uncheckedCheckBoxColor = {colors.text}
                         rightTextStyle = {{color: colors.text, textDecorationLine: "none"}}
                         onClick = {() => {
                             setBusinessData((prevData) => ({

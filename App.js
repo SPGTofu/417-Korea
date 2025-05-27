@@ -36,9 +36,10 @@ export default function App() {
     const getUserData = async () => {
       try {
         const savedUser = await AsyncStorage.getItem("user");
-        setUser(savedUser || null);
+        setUser(JSON.parse(savedUser) || null);
       } catch (error) {
         console.error('error fetching user from stroage: ', error);
+        setUser(null);
       }
     }
     getTheme();

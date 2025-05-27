@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import { useTheme } from '@react-navigation/native';
 import { checkIfUserIsAdmin } from '../dbcalls';
+import { getAuth } from 'firebase/auth';
 
 export default function AccountData({ navigation }) {
     const { user } = useContext(UserContext);
